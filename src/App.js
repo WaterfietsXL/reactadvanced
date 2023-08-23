@@ -49,7 +49,7 @@ function ListPage(){
     return <div>
         <div style={{display:'flex',justifyContent:'center',gap:'20px'}}>
             <label>
-                filter
+                filter&nbsp;
                 <input value={filter} onInput={e => {
                     setFilter(e.target.value)
                     setRefresh(refresh + 1)
@@ -57,7 +57,7 @@ function ListPage(){
 
             </label>
             <label>
-                categoryFilter
+                categoryFilter&nbsp;
                 <input value={categoryFilter} onInput={e => {
                     setCategoryFilter(e.target.value)
                 }}></input>
@@ -191,25 +191,28 @@ function DetailPage(props){
     
 
     return <div>
-        <Link to="/">go back</Link>
-        <button onClick={() => {
-            if(confirm('are you sure you want to delete?')){
-                fetch(`http://localhost:3001/events/${id}`,{
-                    method:'DELETE'
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        navigate('/')
-                        toastr.success('event deleted', '')
+        <div style={{display:'flex', justifyContent:'center', gap:'10px'}}>
+            <Link to="/">go back</Link>
+            <button onClick={() => {
+                if(confirm('are you sure you want to delete?')){
+                    fetch(`http://localhost:3001/events/${id}`,{
+                        method:'DELETE'
                     })
-                    .catch((err) => {
-                        console.log(err.message);
-                        toastr.error(err.message)
-                    });
-            }
-        }}>delete</button>
+                        .then((response) => response.json())
+                        .then((data) => {
+                            navigate('/')
+                            toastr.success('event deleted', '')
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                            toastr.error(err.message)
+                        });
+                }
+            }}>delete</button>
+        </div>
+        <br></br>
 
-        <form onSubmit={e => {
+        <form style={{display:'flex',flexDirection:'column', alignItems:'center'}} onSubmit={e => {
             e.preventDefault()
             fetch(`http://localhost:3001/events/${id}`,{
                 method:'PUT',
@@ -235,11 +238,11 @@ function DetailPage(props){
             <br/>
             <label>id <input readOnly name='id' value={event.id}></input></label>
             <br/>
-            <label>createdBy 
+            <label style={{display:'flex',alignItems:'center'}}>createdBy:&nbsp;
                 {(() => {
                     var user = users.find(u => u.id == event.createdBy)
                     if(user){
-                        return <div>
+                        return <div style={{display:'flex',alignItems:'center'}}>
                             <span>{user.name}</span>
                             <img style={{maxWidth:'200px'}} src={user.image}></img>
                         </div>
@@ -257,7 +260,7 @@ function DetailPage(props){
             <br/>
             <label>location <input name='location' value={event.location} onChange={handleChange}></input></label>
             <br/>
-            <label>categories 
+            <label>categories:&nbsp;
             {
                 event.categoryIds.map(cid => categories.find(c => c.id == cid)?.name)
             }
