@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.detailblock{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.listpage{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.styleButton{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.eventSquare{
+  border:1px solid black;
+  padding:10px;
+  margin:10px; 
+  border-radius:3px;
+  box-shadow:black 4px 6px 9px 0px;
+}
+
+.image1{
+  max-width:200px;
+}
+
+.deleteButton{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.saveButton{
+  display:flex;
+  align-items:center;
+}
+
+.createdBy{
+  display:flex;
+  align-items:center;
+}
+
+.image2{
+  max-width:200px;
+}
+
+.image3{
+  max-width: 200px;
+}
+
+
+
